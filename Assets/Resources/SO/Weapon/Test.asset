@@ -15,11 +15,12 @@ MonoBehaviour:
   _weaponName: test
   _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
   _damage: 100
+  _magazineSize: 100
   _bulletSpeed: 25
   _shootDelay: 0.1
   _projectileCount: 4
   _rafaleDelay: 0
   _rafaleCount: 0
   _angle: 360
-  _bulletLifeTime: 30
-  _cadence: 0
+  _reloadTime: 1
+  _cadence: 2

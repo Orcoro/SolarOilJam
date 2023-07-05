@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponName: Uzi
   _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
+  _damage: 2
+  _magazineSize: 50
   _bulletSpeed: 25
   _shootDelay: 0.1
   _projectileCount: 1
+  _rafaleDelay: 0
   _rafaleCount: 0
   _angle: 0
-  _bulletLifeTime: 25
+  _reloadTime: 3
   _cadence: 2

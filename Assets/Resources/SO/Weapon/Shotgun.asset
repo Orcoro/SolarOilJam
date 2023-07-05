@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponName: ShotGun
   _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
+  _damage: 3
+  _magazineSize: 5
   _bulletSpeed: 25
   _shootDelay: 3
   _projectileCount: 9
+  _rafaleDelay: 0
   _rafaleCount: 0
   _angle: 60
-  _bulletLifeTime: 30
+  _reloadTime: 5
   _cadence: 0
