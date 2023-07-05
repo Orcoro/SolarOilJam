@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private GameManager _instance;
+    [SerializeField] private SOWeapon _defaultWeapon;
 
-    public GameManager Instance {
+    private static GameManager _instance;
+
+    public SOWeapon DefaultWeapon {
+        get { return _defaultWeapon; }
+    }
+
+    public static GameManager Instance {
         get { return _instance; }
     }
 

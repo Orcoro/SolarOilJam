@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private SOWeapon _weapon;
     [SerializeField] private Transform _shootPoint;
     private Movement _movement;
     private Shoot _shoot;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
             throw new System.Exception("Movement is NULL");
         if (_shoot == null)
             throw new System.Exception("Shoot is NULL");
-        _shoot.Init(_shootPoint);
+        _shoot.Init(_shootPoint, GameManager.Instance.DefaultWeapon);
     }
 
     private void Update()
@@ -35,7 +36,12 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetAxis("Fire1") > 0)
+        if (Input.GetAxis("Reload") > 0)
+            _shoot.Reload();
+        if (Input.GetAxis("Fire") > 0) {
             _shoot.Shot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            _shoot.Hold = true;
+        } else
+            _shoot.Hold = false;
     }
 }
