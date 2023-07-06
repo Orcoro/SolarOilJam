@@ -19,7 +19,6 @@ public class GameCanvas : MonoBehaviour
     public void Update()
     {
         Shoot shoot = FindObjectOfType<Shoot>();
-        int MaxMag = shoot.MaxMagazineSize();
-        _ammoText.text = shoot.UpdateMagazineSize() * 10 + "ml/" + MaxMag * 10 + "ml";
+        _ammoText.text = shoot.UpdateMagazineSize() * 10 + "ml/" + shoot.MaxMagazineSize() * 10 + "ml";
     }
 }
