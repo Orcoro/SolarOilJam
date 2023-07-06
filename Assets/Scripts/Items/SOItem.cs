@@ -28,6 +28,26 @@ public class SOItem : ScriptableObject
         get { return _itemQuality; }
     }
 
+    public Color ItemColor {
+        get {
+            switch (_itemQuality)
+            {
+                case(Quality.Common):
+                    return Color.white;
+                case(Quality.Uncommon):
+                    return Color.green;
+                case(Quality.Rare):
+                    return Color.blue;
+                case(Quality.Epic):
+                    return Color.magenta;
+                case(Quality.Legendary):
+                    return new Color(255, 165, 0);
+                default:
+                    return Color.white;
+            }
+        }
+    }
+
     public ItemStatistic ItemStatistic {
         get { return _itemStatistic; }
     }
@@ -43,7 +63,7 @@ public class ItemStatistic
     [SerializeField] private float _damageMultiplier;
     [Tooltip ("This variable increase the Magazine Size of the weapon.")]
     [SerializeField] private int _additionnalMunition;
-    [Tooltip ("This variable increase the bullet speed of the weapon.")]
+    [Tooltip ("This variable increase the bullet speed of the weapon. (must be write between 0 and 1)")]
     [SerializeField] private float _bulletVelocity;
     [Tooltip ("This variable increase the shoot delay of the weapon. (must be write between 0 and 1)")]
     [SerializeField] private float _shootDelayMultiplier;

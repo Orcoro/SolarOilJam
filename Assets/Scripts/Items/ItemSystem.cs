@@ -7,6 +7,10 @@ public class ItemSystem : MonoBehaviour
     private List<ItemElement> _items = new List<ItemElement>();
     private ItemStatistic _statistics;
 
+    public ItemStatistic Statistics {
+        get { return _statistics; }
+    }
+
     public void AddItem(SOItem item)
     {
         ItemElement itemElement = _items.Find(x => x.Item == item);
@@ -32,6 +36,7 @@ public class ItemSystem : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class ItemElement
 {
     private SOItem _item;

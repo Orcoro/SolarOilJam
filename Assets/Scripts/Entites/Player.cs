@@ -4,20 +4,37 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private SOWeapon _weapon;
     [SerializeField] private Transform _shootPoint;
     private Movement _movement;
     private Shoot _shoot;
+    private ItemSystem _itemSystem;
+
+    private static Player _instance;
+
+    public static Player Instance {
+        get { return _instance; }
+    }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+            Destroy(this.gameObject);
+        else
+            _instance = this;
+    }
 
     private void Start()
     {
         _movement = GetComponent<Movement>();
         _shoot = GetComponent<Shoot>();
+        _itemSystem = GetComponent<ItemSystem>();
         if (_movement == null)
             throw new System.Exception("Movement is NULL");
         if (_shoot == null)
             throw new System.Exception("Shoot is NULL");
-        _shoot.Init(_shootPoint, GameManager.Instance.DefaultWeapon);
+        if (_itemSystem == null)
+            throw new System.Exception("ItemSystem is NULL");
+        _shoot.Init(_shootPoint, GameManager.Instance.DefaultWeapon, _itemSystem.Statistics);
     }
 
     private void Update()
@@ -56,5 +73,10 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player is dead");
+    }
+
+    public void PickUpItem(SOItem item)
+    {
+        _itemSystem.AddItem(item);
     }
 }

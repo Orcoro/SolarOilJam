@@ -15,15 +15,49 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _rafaleDelay = 0.5f;
     [SerializeField] private int _rafaleCount = 3;
     [SerializeField] private float _angle = 20f;
+    [SerializeField] private WeaponCadence _cadence = WeaponCadence.Single;
     private float _bulletLifeTime = 15f;
     private float _lastShootTime = 0f;
     private bool _hold = false;
     private FlagCoroutine _shootCoroutine;
     private FlagCoroutine _reloadCoroutine;
+    private ItemStatistic _itemStatistics;
 
     public bool Hold {
         get { return _hold; }
         set { _hold = value; }
+    }
+
+    public int MaxMagazineSize {
+        get { return _weapon.MagazineSize + _itemStatistics.AdditionnalMunition; }
+    }
+
+    public float BulletSpeed {
+        get { return _weapon.BulletSpeed * (1 + _itemStatistics.BulletVelocity); }
+    }
+
+    public float ShootDelay {
+        get { return _shootDelay * (1 + _itemStatistics.ShootDelayMultiplier); }
+    }
+
+    public int ProjectileCount {
+        get { return _weapon.ProjectileCount + _itemStatistics.ProjectileBonus; }
+    }
+
+    public float RafaleDelay {
+        get { return _rafaleDelay * (1 + _itemStatistics.RafaleDelay); }
+    }
+
+    public int RafaleProjectile {
+        get { return _weapon.RafaleCount + _itemStatistics.RafaleProjectileBonus; }
+    }
+
+    public float Angle {
+        get { return _weapon.Angle * (1 + _itemStatistics.SpreadAngle); }
+    }
+
+    public float ReloadTime {
+        get { return _weapon.ReloadTime * (1 + _itemStatistics.ReloadTime); }
     }
 
     private void Awake()
@@ -37,6 +71,7 @@ public class Shoot : MonoBehaviour
         _rafaleDelay = 0f;
         _rafaleCount = 0;
         _angle = 0f;
+        _cadence = WeaponCadence.None;
         _shootCoroutine = new FlagCoroutine(true);
         _reloadCoroutine = new FlagCoroutine(true);
     }
@@ -44,7 +79,8 @@ public class Shoot : MonoBehaviour
     [Button ("Init Weapon")]
     public void InitWeapon()
     {
-        Init(_shootPoint, _weapon);
+        Init(_shootPoint);
+        Init(_weapon);
     }
 
     public void Init(Transform shootPoint)
@@ -63,6 +99,7 @@ public class Shoot : MonoBehaviour
         _rafaleDelay = weapon.RafaleDelay;
         _rafaleCount = weapon.RafaleCount;
         _angle = weapon.Angle;
+        _cadence = weapon.Cadence;
         if (_shootCoroutine != null)
             StartCoroutine(StopFlagCoroutine(_shootCoroutine));
         else
@@ -73,20 +110,21 @@ public class Shoot : MonoBehaviour
             _reloadCoroutine = new FlagCoroutine(true);
     }
 
-    public void Init(Transform shootPoint, SOWeapon weapon)
+    public void Init(ItemStatistic itemStatistics)
+    {
+        _itemStatistics = itemStatistics;
+    }
+
+    public void Init(Transform shootPoint, SOWeapon weapon, ItemStatistic itemStatistics)
     {
         Init(shootPoint);
         Init(weapon);
+        Init(itemStatistics);
     }
 
     public int UpdateMagazineSize()
     {
         return _magazineSize;
-    }
-
-    public int MaxMagazineSize()
-    {
-        return _weapon.MagazineSize;
     }
 
     private IEnumerator StopFlagCoroutine(FlagCoroutine flagCoroutine)
@@ -97,15 +135,15 @@ public class Shoot : MonoBehaviour
 
     public void Reload()
     {
-        if (_reloadCoroutine.Flag == true && _magazineSize < _weapon.MagazineSize)
+        if (_reloadCoroutine.Flag == true && _magazineSize < MaxMagazineSize)
             _reloadCoroutine.Coroutine = StartCoroutine(ReloadCoroutine());
     }
 
     private IEnumerator ReloadCoroutine()
     {
         _reloadCoroutine.Flag = false;
-        yield return new WaitForSeconds(_weapon.ReloadTime);
-        _magazineSize = _weapon.MagazineSize;
+        yield return new WaitForSeconds(ReloadTime);
+        _magazineSize = MaxMagazineSize;
         Debug.Log("Reloaded");
         _reloadCoroutine.Flag = true;
     }
@@ -117,23 +155,23 @@ public class Shoot : MonoBehaviour
         direction.z = 0f;
         direction = direction - transform.position;
         direction.Normalize();
-        switch (_weapon.Cadence)
+        switch (_cadence)
         {
             case WeaponCadence.Single:
-                if (Time.time > _lastShootTime + _shootDelay && _hold == false) {
+                if (Time.time > _lastShootTime + ShootDelay && _hold == false) {
                     _shootCoroutine.Coroutine = StartCoroutine(SingleShot(direction, 0f));
                     _lastShootTime = Time.time;
                 }
                 break;
             case WeaponCadence.Rafale:
-                if (Time.time > _lastShootTime + _shootDelay) {
+                if (Time.time > _lastShootTime + ShootDelay) {
                     _shootCoroutine.Coroutine = StartCoroutine(RafaleShot(direction));
                     _lastShootTime = Time.time;
                 }
                 break;
             case WeaponCadence.Auto:
                 if (_shootCoroutine.Flag == true)
-                    _shootCoroutine.Coroutine = StartCoroutine(SingleShot(direction, _shootDelay));
+                    _shootCoroutine.Coroutine = StartCoroutine(SingleShot(direction, ShootDelay));
                 _lastShootTime = Time.time;
                 break;
             default:
@@ -154,26 +192,26 @@ public class Shoot : MonoBehaviour
     private IEnumerator RafaleShot(Vector3 direction)
     {
         _shootCoroutine.Flag = false;
-        for (int i = 0; i < _rafaleCount; i++) {
+        for (int i = 0; i < RafaleProjectile && _magazineSize > 0; i++) {
             _magazineSize--;
             yield return MultiShot(direction);
-            yield return new WaitForSeconds(_rafaleDelay);
+            yield return new WaitForSeconds(RafaleDelay);
         }
         _shootCoroutine.Flag = true;
     }
 
     private IEnumerator MultiShot(Vector3 direction)
     {
-        float angleStep = _angle / (_projectileCount - 1);
-        Quaternion rotationOffset = Quaternion.Euler(0f, 0f, -_angle / 2f);
+        float angleStep = Angle / (ProjectileCount - 1);
+        Quaternion rotationOffset = Quaternion.Euler(0f, 0f, -Angle / 2f);
 
-        for (int i = 0; i < _projectileCount; i++) {
+        for (int i = 0; i < ProjectileCount; i++) {
             float currentAngle = angleStep < 360f ? i * angleStep : 0f;
             Quaternion bulletRotation = Quaternion.Euler(0f, 0f, currentAngle);
             Vector3 bulletDirection = rotationOffset * bulletRotation * direction;
             GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
             bullet.transform.parent = _shootPoint;
-            bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * _bulletSpeed;
+            bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * BulletSpeed;
             Destroy(bullet, _bulletLifeTime);
         }
         yield return null;
