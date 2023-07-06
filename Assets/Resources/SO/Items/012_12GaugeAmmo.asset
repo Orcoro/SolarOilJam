@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c54c01bbdf8747ac4470018ce85af, type: 3}
+  m_Name: 012_12GaugeAmmo
+  m_EditorClassIdentifier: 
+  _itemName: 12 Gauge Ammo
+  _itemDescription: Increase Damage by 50 and Damage Multiplier by 20% but Increase
+    Spread Angle by 80% and Relaod Time by 50%
+  _itemSprite: {fileID: 21300000, guid: 17b69705f04293d4baaad8a6e3fbddf0, type: 3}
+  _itemQuality: 4
+  _itemStatistic:
+    _flatDamage: 50
+    _damageMultiplier: 0.2
+    _additionnalMunition: 0
+    _bulletVelocity: 0
+    _shootDelayMultiplier: 0
+    _projectileBonus: 0
+    _rafaleDelay: 0
+    _rafaleProjectileBonus: 0
+    _spreadAngle: 0.8
+    _reloadTime: 0.5

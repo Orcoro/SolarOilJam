@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c54c01bbdf8747ac4470018ce85af, type: 3}
+  m_Name: 004_ShotgunUnderBarel
+  m_EditorClassIdentifier: 
+  _itemName: UnderBarrel Shotgun
+  _itemDescription: Increase Projectile by 2 and Spread Angle 10%
+  _itemSprite: {fileID: 21300000, guid: 6bf436f3f246b454da75b823a2e6d079, type: 3}
+  _itemQuality: 3
+  _itemStatistic:
+    _flatDamage: 0
+    _damageMultiplier: 0
+    _additionnalMunition: 0
+    _bulletVelocity: 0
+    _shootDelayMultiplier: 0
+    _projectileBonus: 2
+    _rafaleDelay: 0
+    _rafaleProjectileBonus: 0
+    _spreadAngle: 0.1
+    _reloadTime: 0

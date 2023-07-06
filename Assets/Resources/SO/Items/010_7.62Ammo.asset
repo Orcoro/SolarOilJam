@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c54c01bbdf8747ac4470018ce85af, type: 3}
+  m_Name: 010_7.62Ammo
+  m_EditorClassIdentifier: 
+  _itemName: 7.62 ammunition
+  _itemDescription: Increase Damage by 15 but Increase Shoot Delay by 15%
+  _itemSprite: {fileID: 21300000, guid: 9739d9019a60c47469675423519ee26a, type: 3}
+  _itemQuality: 3
+  _itemStatistic:
+    _flatDamage: 15
+    _damageMultiplier: 0
+    _additionnalMunition: 0
+    _bulletVelocity: 0
+    _shootDelayMultiplier: 0.15
+    _projectileBonus: 0
+    _rafaleDelay: 0
+    _rafaleProjectileBonus: 0
+    _spreadAngle: 0
+    _reloadTime: 0
