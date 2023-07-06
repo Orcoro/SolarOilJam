@@ -37,7 +37,8 @@ public class Shoot : MonoBehaviour
     }
 
     public float ShootDelay {
-        get { return _shootDelay * (1 + _itemStatistics.ShootDelayMultiplier); }
+        get { Debug.Log($"ShootDelay: {_shootDelay * (1 + _itemStatistics.ShootDelayMultiplier)} _shootdelay {_shootDelay} _itemStatistics.ShootDelayMultiplier {_itemStatistics.ShootDelayMultiplier}");
+            return _shootDelay * (1 + _itemStatistics.ShootDelayMultiplier); }
     }
 
     public int ProjectileCount {
@@ -74,6 +75,7 @@ public class Shoot : MonoBehaviour
         _cadence = WeaponCadence.None;
         _shootCoroutine = new FlagCoroutine(true);
         _reloadCoroutine = new FlagCoroutine(true);
+        _itemStatistics = new ItemStatistic();
     }
 
     [Button ("Init Weapon")]

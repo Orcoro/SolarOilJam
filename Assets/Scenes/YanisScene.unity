@@ -500,7 +500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b2bea577886644fa0e1e8cd68ca028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 0}
   _shootPoint: {fileID: 1242187469}
 --- !u!114 &645969913
 MonoBehaviour:
@@ -821,6 +820,6 @@ PrefabInstance:
     - target: {fileID: 5573708834251367417, guid: a36a0215981151e40992505531df76ac, type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 11400000, guid: ab80e3bb8ba3ed7469d8ff90c82b4be7, type: 2}
+      objectReference: {fileID: 11400000, guid: 94857c494c4e3c543bee72bffcef58bb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a36a0215981151e40992505531df76ac, type: 3}

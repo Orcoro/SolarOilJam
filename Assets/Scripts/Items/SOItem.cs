@@ -138,6 +138,20 @@ public class ItemStatistic
         set { _reloadTime = value; }
     }
 
+    public ItemStatistic()
+    {
+        this._flatDamage = 0;
+        this._damageMultiplier = 0;
+        this._additionnalMunition = 0;
+        this._bulletVelocity = 0;
+        this._shootDelayMultiplier = 0;
+        this._projectileBonus = 0;
+        this._rafaleDelay = 0;
+        this._rafaleProjectileBonus = 0;
+        this._spreadAngle = 0;
+        this._reloadTime = 0;
+    }
+
     public void AddStatistic(SOItem item)
     {
         this._flatDamage += item.ItemStatistic.FlatDamage;
