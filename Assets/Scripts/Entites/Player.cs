@@ -44,4 +44,17 @@ public class Player : MonoBehaviour
         } else
             _shoot.Hold = false;
     }
+
+    public void TakeDamage(int damage)
+    {
+        GameCanvas _gameCanvas = FindObjectOfType<GameCanvas>();
+        _gameCanvas.UpdateHealth(damage);
+        if (_gameCanvas.CurrentHealth() <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player is dead");
+    }
 }
