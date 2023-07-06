@@ -79,6 +79,16 @@ public class Shoot : MonoBehaviour
         Init(weapon);
     }
 
+    public int UpdateMagazineSize()
+    {
+        return _magazineSize;
+    }
+
+    public int MaxMagazineSize()
+    {
+        return _weapon.MagazineSize;
+    }
+
     private IEnumerator StopFlagCoroutine(FlagCoroutine flagCoroutine)
     {
         yield return new WaitUntil(() => flagCoroutine.Flag == true);
