@@ -16,8 +16,7 @@ MonoBehaviour:
   _itemDescription: Increase Projectile by 2 and Spread Angle 10%
   _itemSprite: {fileID: 21300000, guid: 6bf436f3f246b454da75b823a2e6d079, type: 3}
   _itemQuality: 3
-  _itemStatistic:
-    _flatDamage: 0
+  _weaponStatistic:
     _damageMultiplier: 0
     _additionnalMunition: 0
     _bulletVelocity: 0
@@ -27,3 +26,12 @@ MonoBehaviour:
     _rafaleProjectileBonus: 0
     _spreadAngle: 0.1
     _reloadTime: 0
+  _bulletStatistic:
+    _damage: 0
+    _piercing: 0
+  _entitiesStatistic:
+    _speed: 0
+    _health: 0
+    _armor: 0
+    _range: 0
+    _pickUpRange: 0

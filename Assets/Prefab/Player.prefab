@@ -249,9 +249,10 @@ GameObject:
   - component: {fileID: 5287564275414156093}
   - component: {fileID: 5287564275414156094}
   - component: {fileID: -1133649627614328866}
+  - component: {fileID: 5906323782269744911}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbbe878185ebf94683c2ebc233b8ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
 --- !u!114 &5287564275414156094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,17 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5612074ca4052894fbdb1f1568e2d12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 11400000, guid: ba696067b23b1ae41939f8b059b1bd82, type: 2}
-  _shootPoint: {fileID: 0}
-  _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
-  _magazineSize: 100
-  _bulletSpeed: 25
-  _shootDelay: 0.1
-  _projectileCount: 4
-  _rafaleDelay: 0
-  _rafaleCount: 0
-  _angle: 360
-  _cadence: 0
 --- !u!114 &-1133649627614328866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +324,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380ca60443dde16439e70ee6fe767988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5906323782269744911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5287564275414156095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7752f8c0e9b38444db19bbba587b8244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5287564275980462590
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5287564275980462589}
   - component: {fileID: 5287564275980462588}
+  - component: {fileID: 3317707322195189239}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -419,6 +421,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &3317707322195189239
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5287564275980462590}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5287564276061726468
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface IKillable
+{
+    Statistic Statistic { get; }
+    void Die();
+}

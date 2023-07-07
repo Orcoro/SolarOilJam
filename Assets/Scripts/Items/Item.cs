@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        if (IsOver(Player.Instance.transform.position, 1.5f)) {
+        if (IsOver(Player.Instance.transform.position, Player.Instance.Statistic.EntitiesStatistic.PickUpRange)) {
             Player.Instance.PickUpItem(_item);
             Destroy(gameObject);
         }

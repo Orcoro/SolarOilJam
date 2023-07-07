@@ -14,7 +14,6 @@ public class SOWeapon : ScriptableObject
     [SerializeField, Range(1, 9)] private int _projectileCount;
     [SerializeField, Range(0.1f, 10f)] private float _rafaleDelay;
     [SerializeField, Range(1, 9)] private int _rafaleCount;
-    [SerializeField, Range(0f, 360f)] private float _angle;
     [SerializeField, Range(1f, 10f)] private float _reloadTime;
     [SerializeField] private WeaponCadence _cadence;
 
@@ -52,10 +51,6 @@ public class SOWeapon : ScriptableObject
 
     public int RafaleCount {
         get { return _rafaleCount; }
-    }
-
-    public float Angle {
-        get { return _angle; }
     }
 
     public float ReloadTime {

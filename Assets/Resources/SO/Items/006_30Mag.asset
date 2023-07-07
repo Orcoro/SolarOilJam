@@ -16,8 +16,7 @@ MonoBehaviour:
   _itemDescription: Increase Magazine Capacity by 30 Ammo.
   _itemSprite: {fileID: 21300000, guid: 977a9590dda1a9647bdd712e0a80b164, type: 3}
   _itemQuality: 1
-  _itemStatistic:
-    _flatDamage: 0
+  _weaponStatistic:
     _damageMultiplier: 0
     _additionnalMunition: 30
     _bulletVelocity: 0
@@ -27,3 +26,12 @@ MonoBehaviour:
     _rafaleProjectileBonus: 0
     _spreadAngle: 0
     _reloadTime: 0
+  _bulletStatistic:
+    _damage: 0
+    _piercing: 0
+  _entitiesStatistic:
+    _speed: 0
+    _health: 0
+    _armor: 0
+    _range: 0
+    _pickUpRange: 0

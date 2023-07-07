@@ -17,8 +17,7 @@ MonoBehaviour:
     Spread Angle by 80% and Relaod Time by 50%
   _itemSprite: {fileID: 21300000, guid: 17b69705f04293d4baaad8a6e3fbddf0, type: 3}
   _itemQuality: 4
-  _itemStatistic:
-    _flatDamage: 50
+  _weaponStatistic:
     _damageMultiplier: 0.2
     _additionnalMunition: 0
     _bulletVelocity: 0
@@ -28,3 +27,12 @@ MonoBehaviour:
     _rafaleProjectileBonus: 0
     _spreadAngle: 0.8
     _reloadTime: 0.5
+  _bulletStatistic:
+    _damage: 50
+    _piercing: 0
+  _entitiesStatistic:
+    _speed: 0
+    _health: 0
+    _armor: 0
+    _range: 0
+    _pickUpRange: 0

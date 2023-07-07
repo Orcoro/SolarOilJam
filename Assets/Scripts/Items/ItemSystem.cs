@@ -5,9 +5,9 @@ using UnityEngine;
 public class ItemSystem : MonoBehaviour
 {
     private List<ItemElement> _items = new List<ItemElement>();
-    private ItemStatistic _statistics;
+    private Statistic _statistics = new Statistic();
 
-    public ItemStatistic Statistics {
+    public Statistic Statistics {
         get { return _statistics; }
     }
 
@@ -50,5 +50,59 @@ public class ItemElement
     public int Count {
         get { return _count; }
         set { _count = value; }
+    }
+}
+
+[System.Serializable]
+public class Statistic
+{
+    [SerializeField] private WeaponStatistic _weaponStatistic;
+    [SerializeField] private BulletStatistic _bulletStatistic;
+    [SerializeField] private EntitiesStatistic _entitiesStatistic;
+
+    public WeaponStatistic WeaponStatistic {
+        get { return _weaponStatistic; }
+        set { _weaponStatistic = value; }
+    }
+
+    public BulletStatistic BulletStatistic {
+        get { return _bulletStatistic; }
+        set { _bulletStatistic = value; }
+    }
+
+    public EntitiesStatistic EntitiesStatistic {
+        get { return _entitiesStatistic; }
+        set { _entitiesStatistic = value; }
+    }
+
+    public Statistic()
+    {
+        _weaponStatistic = new WeaponStatistic();
+        _bulletStatistic = new BulletStatistic();
+        _entitiesStatistic = new EntitiesStatistic();
+    }
+
+    public void AddStatistic(SOItem item)
+    {
+        _weaponStatistic.AddStatistic(item);
+        _bulletStatistic.AddStatistic(item);
+        _entitiesStatistic.AddStatistic(item);
+    }
+
+    public void RemoveStatistic(SOItem item)
+    {
+        _weaponStatistic.RemoveStatistic(item);
+        _bulletStatistic.RemoveStatistic(item);
+        _entitiesStatistic.RemoveStatistic(item);
+    }
+
+    //overload operator +
+    public static Statistic operator +(Statistic a, Statistic b)
+    {
+        Statistic result = new Statistic();
+        result.WeaponStatistic = a.WeaponStatistic + b.WeaponStatistic;
+        result.BulletStatistic = a.BulletStatistic + b.BulletStatistic;
+        result.EntitiesStatistic = a.EntitiesStatistic + b.EntitiesStatistic;
+        return result;
     }
 }

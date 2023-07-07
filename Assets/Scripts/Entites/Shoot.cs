@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class Shoot : MonoBehaviour
+public class Shoot : MonoBehaviour, IRange
 {
-    [SerializeField] private SOWeapon _weapon;
-    [SerializeField] private Transform _shootPoint;
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private int _magazineSize = 10;
-    [SerializeField] private float _bulletSpeed = 5f;
-    [SerializeField] private float _shootDelay = 0.5f;
-    [SerializeField] private int _projectileCount = 1;
-    [SerializeField] private float _rafaleDelay = 0.5f;
-    [SerializeField] private int _rafaleCount = 3;
-    [SerializeField] private float _angle = 20f;
-    [SerializeField] private WeaponCadence _cadence = WeaponCadence.Single;
+    private SOWeapon _weapon;
+    private Transform _shootPoint;
+    private GameObject _bulletPrefab;
+    private int _magazineSize = 10;
+    private float _bulletSpeed = 5f;
+    private float _shootDelay = 0.5f;
+    private int _projectileCount = 1;
+    private float _rafaleDelay = 0.5f;
+    private int _rafaleCount = 3;
+    private float _angle = 20f;
+    private WeaponCadence _cadence = WeaponCadence.Single;
     private float _bulletLifeTime = 15f;
     private float _lastShootTime = 0f;
     private bool _hold = false;
     private FlagCoroutine _shootCoroutine;
     private FlagCoroutine _reloadCoroutine;
-    private ItemStatistic _itemStatistics;
+    private IKillable _owner = null;
 
     public bool Hold {
         get { return _hold; }
@@ -29,36 +29,35 @@ public class Shoot : MonoBehaviour
     }
 
     public int MaxMagazineSize {
-        get { return _weapon.MagazineSize + _itemStatistics.AdditionnalMunition; }
+        get { return (_weapon == null ? 10 : _weapon.MagazineSize) + (_owner == null ? 0 : _owner.Statistic.WeaponStatistic.AdditionnalMunition); }
     }
 
     public float BulletSpeed {
-        get { return _weapon.BulletSpeed * (1 + _itemStatistics.BulletVelocity); }
+        get { return _weapon.BulletSpeed * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.BulletVelocity)); }
     }
 
     public float ShootDelay {
-        get { Debug.Log($"ShootDelay: {_shootDelay * (1 + _itemStatistics.ShootDelayMultiplier)} _shootdelay {_shootDelay} _itemStatistics.ShootDelayMultiplier {_itemStatistics.ShootDelayMultiplier}");
-            return _shootDelay * (1 + _itemStatistics.ShootDelayMultiplier); }
+        get { return _shootDelay * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.ShootDelayMultiplier)); }
     }
 
     public int ProjectileCount {
-        get { return _weapon.ProjectileCount + _itemStatistics.ProjectileBonus; }
+        get { return _weapon.ProjectileCount + (_owner == null ? 0 : _owner.Statistic.WeaponStatistic.ProjectileBonus); }
     }
 
     public float RafaleDelay {
-        get { return _rafaleDelay * (1 + _itemStatistics.RafaleDelay); }
+        get { return _rafaleDelay * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.RafaleDelay)); }
     }
 
     public int RafaleProjectile {
-        get { return _weapon.RafaleCount + _itemStatistics.RafaleProjectileBonus; }
+        get { return _weapon.RafaleCount + (_owner == null ? 0 : _owner.Statistic.WeaponStatistic.RafaleProjectileBonus); }
     }
 
     public float Angle {
-        get { return _weapon.Angle * (1 + _itemStatistics.SpreadAngle); }
+        get { return _angle * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.SpreadAngle)); }
     }
 
     public float ReloadTime {
-        get { return _weapon.ReloadTime * (1 + _itemStatistics.ReloadTime); }
+        get { return (_weapon == null ? 1f : _weapon.ReloadTime) * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.ReloadTime)); }
     }
 
     private void Awake()
@@ -71,11 +70,10 @@ public class Shoot : MonoBehaviour
         _projectileCount = 0;
         _rafaleDelay = 0f;
         _rafaleCount = 0;
-        _angle = 0f;
+        _angle = 135f;
         _cadence = WeaponCadence.None;
         _shootCoroutine = new FlagCoroutine(true);
         _reloadCoroutine = new FlagCoroutine(true);
-        _itemStatistics = new ItemStatistic();
     }
 
     [Button ("Init Weapon")]
@@ -100,7 +98,6 @@ public class Shoot : MonoBehaviour
         _projectileCount = weapon.ProjectileCount;
         _rafaleDelay = weapon.RafaleDelay;
         _rafaleCount = weapon.RafaleCount;
-        _angle = weapon.Angle;
         _cadence = weapon.Cadence;
         if (_shootCoroutine != null)
             StartCoroutine(StopFlagCoroutine(_shootCoroutine));
@@ -112,16 +109,20 @@ public class Shoot : MonoBehaviour
             _reloadCoroutine = new FlagCoroutine(true);
     }
 
-    public void Init(ItemStatistic itemStatistics)
+    public void Init(Statistic statistics)
     {
-        _itemStatistics = itemStatistics;
+        _owner = GetComponent<IKillable>();
+        if (_owner == null) {
+            _owner = gameObject.tag == "Player" ? gameObject.AddComponent<Player>() : gameObject.AddComponent<Entities>();
+            throw new System.Exception("Owner is NULL");
+        }
     }
 
-    public void Init(Transform shootPoint, SOWeapon weapon, ItemStatistic itemStatistics)
+    public void Init(Transform shootPoint, SOWeapon weapon, Statistic statistics)
     {
         Init(shootPoint);
         Init(weapon);
-        Init(itemStatistics);
+        Init(statistics);
     }
 
     public int UpdateMagazineSize()
@@ -135,6 +136,17 @@ public class Shoot : MonoBehaviour
         flagCoroutine.Flag = true;
     }
 
+    public void Attack(bool fire, bool reload, Vector3 direction)
+    {
+        if (reload)
+            Reload();
+        if (fire) {
+            Aim(direction);
+            _hold = true;
+        } else
+            _hold = false;
+    }
+
     public void Reload()
     {
         if (_reloadCoroutine.Flag == true && _magazineSize < MaxMagazineSize)
@@ -146,11 +158,20 @@ public class Shoot : MonoBehaviour
         _reloadCoroutine.Flag = false;
         yield return new WaitForSeconds(ReloadTime);
         _magazineSize = MaxMagazineSize;
-        Debug.Log("Reloaded");
         _reloadCoroutine.Flag = true;
     }
 
-    public void Shot(Vector3 direction)
+    public bool CanReload()
+    {
+        return _shootCoroutine.Flag == true && _reloadCoroutine.Flag == true && _magazineSize < MaxMagazineSize;
+    }
+
+    public bool CanAttack()
+    {
+        return _shootCoroutine.Flag == true && _reloadCoroutine.Flag == true && _magazineSize > 0;
+    }
+
+    public void Aim(Vector3 direction)
     {
         if (_magazineSize <= 0 || _reloadCoroutine.Flag == false)
             return;
@@ -204,11 +225,11 @@ public class Shoot : MonoBehaviour
 
     private IEnumerator MultiShot(Vector3 direction)
     {
-        float angleStep = Angle / (ProjectileCount - 1);
-        Quaternion rotationOffset = Quaternion.Euler(0f, 0f, -Angle / 2f);
+        float angleStep = ProjectileCount > 1 ? Angle / (ProjectileCount - 1) : 0f;
+        Quaternion rotationOffset = Quaternion.Euler(0f, 0f, ProjectileCount > 1 ? -Angle / 2f : 0f);
 
         for (int i = 0; i < ProjectileCount; i++) {
-            float currentAngle = angleStep < 360f ? i * angleStep : 0f;
+            float currentAngle = ProjectileCount > 1 ? i * angleStep : 0f;
             Quaternion bulletRotation = Quaternion.Euler(0f, 0f, currentAngle);
             Vector3 bulletDirection = rotationOffset * bulletRotation * direction;
             GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
