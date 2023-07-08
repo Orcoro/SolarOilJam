@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 301718025}
   - component: {fileID: 301718024}
   - component: {fileID: 301718023}
-  - component: {fileID: 301718022}
+  - component: {fileID: 301718026}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -242,18 +242,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -217}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &301718022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301718020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a31afaac06e92ce4183e45a1aeaf77f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &301718023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,8 +286,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 301718022}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+      - m_Target: {fileID: 301718026}
+        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: ChangeToScene
         m_Mode: 3
         m_Arguments:
@@ -348,6 +336,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301718020}
   m_CullTransparentMesh: 1
+--- !u!114 &301718026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301718020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca95cad047bf9d429ba42242a4ac412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseMenu: {fileID: 0}
+  _gameOverMenu: {fileID: 0}
+  _winMenu: {fileID: 0}
 --- !u!1 &761437105
 GameObject:
   m_ObjectHideFlags: 0
