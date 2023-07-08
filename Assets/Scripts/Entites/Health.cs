@@ -20,7 +20,7 @@ public class Health : MonoBehaviour, IDamageable
         get { return _owner.Statistic.EntitiesStatistic.Armor; }
     }
 
-    public void Init(Statistic statistic, bool fullLife)
+    public void Init(bool fullLife)
     {
         _owner = GetComponent<IKillable>();
         if (_owner == null) {
@@ -29,6 +29,13 @@ public class Health : MonoBehaviour, IDamageable
         }
         _maxHealth = MaxHealth;
         _currentHealth = fullLife ? _maxHealth : _currentHealth;
+    }
+
+    public void UpdateHealth()
+    {
+        if (_currentHealth >= _maxHealth)
+            _currentHealth = MaxHealth;
+        _maxHealth = MaxHealth;
     }
 
     public bool TakeDamage(int damage, string attacker)

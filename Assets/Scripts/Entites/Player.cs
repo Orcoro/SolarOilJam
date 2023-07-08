@@ -45,15 +45,15 @@ public class Player : MonoBehaviour, IKillable
         if (_movement == null)
             throw new System.Exception("Movement is NULL");
         else
-            _movement.Init(_statistic);
+            _movement.Init();
         if (_shoot == null)
             throw new System.Exception("Shoot is NULL");
         else
-            _shoot.Init(_shootPoint, GameManager.Instance.DefaultWeapon, _statistic);
+            _shoot.Init(_shootPoint, GameManager.Instance.DefaultWeapon);
         if (_health == null)
             throw new System.Exception("Health is NULL");
         else
-            _health.Init(_statistic, true);
+            _health.Init(true);
     }
 
     private void LateUpdate()
@@ -91,11 +91,7 @@ public class Player : MonoBehaviour, IKillable
             _itemSystem.AddItem(item);
             _statistic = _currentStatistic + _itemSystem.Statistics;
         }
-        if (_shoot != null)
-            _shoot.Init(_statistic);
         if (_health != null)
-            _health.Init(_statistic, false);
-        if (_movement != null)
-            _movement.Init(_statistic);
+            _health.UpdateHealth();
     }
 }

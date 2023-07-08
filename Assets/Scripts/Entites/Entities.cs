@@ -24,6 +24,7 @@ public class Entities : MonoBehaviour, IKillable
 
     private void Start()
     {
+        
     }
 
     public void Init(Statistic statistic)
@@ -31,11 +32,11 @@ public class Entities : MonoBehaviour, IKillable
         if (_movement == null)
             throw new System.Exception("Movement is NULL");
         else
-            _movement.Init(_statistic);
+            _movement.Init();
         if (_health == null)
             throw new System.Exception("Health is NULL");
         else
-            _health.Init(_statistic, true);
+            _health.Init(true);
         if (_tmpattackStyle == AttackStyle.Range)
             _attackable = gameObject.AddComponent<Shoot>();
     }
@@ -45,7 +46,7 @@ public class Entities : MonoBehaviour, IKillable
         // if (_attackable is IMelee)
         //     ((IMelee)_attackable).Attack(((IMelee)_attackable).CanAttack(), false, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (_attackable is IRange)
-            ((IRange)_attackable).Attack(((IRange)_attackable).CanAttack(), ((IRange)_attackable).CanReload(), Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            ((IRange)_attackable).Attack(((IRange)_attackable).CanAttack(), ((IRange)_attackable).CanReload(), Player.Instance.transform.position);
     }
 
     public void Die()
