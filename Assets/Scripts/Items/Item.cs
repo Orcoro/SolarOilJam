@@ -7,6 +7,11 @@ public class Item : MonoBehaviour
     [SerializeField] private SOItem _item;
     private SpriteRenderer _background;
     private SpriteRenderer _icon;
+    private float _defaultRadius = 1.5f;
+
+    public float PickUpRange {
+        get { return _defaultRadius * (1 + Player.Instance.Statistic.EntitiesStatistic.PickUpRange); }
+    }
 
     private void Awake()
     {
@@ -33,7 +38,7 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        if (IsOver(Player.Instance.transform.position, Player.Instance.Statistic.EntitiesStatistic.PickUpRange)) {
+        if (IsOver(Player.Instance.transform.position, PickUpRange)) {
             Player.Instance.PickUpItem(_item);
             Destroy(gameObject);
         }

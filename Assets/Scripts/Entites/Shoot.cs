@@ -109,7 +109,7 @@ public class Shoot : MonoBehaviour, IRange
             _reloadCoroutine = new FlagCoroutine(true);
     }
 
-    public void Init(Statistic statistics)
+    public void Init()
     {
         _owner = GetComponent<IKillable>();
         if (_owner == null) {
@@ -118,11 +118,11 @@ public class Shoot : MonoBehaviour, IRange
         }
     }
 
-    public void Init(Transform shootPoint, SOWeapon weapon, Statistic statistics)
+    public void Init(Transform shootPoint, SOWeapon weapon)
     {
         Init(shootPoint);
         Init(weapon);
-        Init(statistics);
+        Init();
     }
 
     public int UpdateMagazineSize()
@@ -233,8 +233,8 @@ public class Shoot : MonoBehaviour, IRange
             Quaternion bulletRotation = Quaternion.Euler(0f, 0f, currentAngle);
             Vector3 bulletDirection = rotationOffset * bulletRotation * direction;
             GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-            bullet.transform.parent = _shootPoint;
             bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * BulletSpeed;
+            bullet.GetComponent<Bullet>().Init(_owner);
             Destroy(bullet, _bulletLifeTime);
         }
         yield return null;

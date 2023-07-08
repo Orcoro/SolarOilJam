@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Statistic _statistic;
+    private IKillable _owner;
     private int _damage = 1;
     private int _piercing = 1;
 
     public int Damage {
-        get { return _damage + _statistic.BulletStatistic.Damage; }
+        get { return _damage + _owner.Statistic.BulletStatistic.Damage; }
     }
 
     public int Piercing {
-        get { return _piercing + _statistic.BulletStatistic.Piercing; }
+        get { return _piercing + _owner.Statistic.BulletStatistic.Piercing; }
     }
 
-    public void Init(Statistic statistic)
+    public void Init(IKillable owner)
     {
-        _statistic = statistic;
+        _owner = owner;
         _damage = Damage;
         _piercing = Piercing;
+        if (_owner is MonoBehaviour isOwner)
+            gameObject.tag = isOwner.gameObject.tag;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

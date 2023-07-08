@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IMoveable
 {
-    void Init(Statistic statistic);
+    void Init();
     void Move(Vector3 direction);
 }
