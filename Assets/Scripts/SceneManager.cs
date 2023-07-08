@@ -11,6 +11,7 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private Canvas _gameOverMenu;
     [SerializeField] private Canvas _winMenu;
     [SerializeField] private Camera _camera;
+    [SerializeField] private GameObject _statsMenu;
 
     void Start()
     {
@@ -24,6 +25,10 @@ public class SceneManager : MonoBehaviour
         {
             Pause();
         }  
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Stats();
+        } 
     }
 
     [Button ("GameOver")]
@@ -72,5 +77,10 @@ public class SceneManager : MonoBehaviour
         _camera.GetComponent<CameraManager>().enabled = true;
         _pauseMenu.gameObject.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void Stats()
+    {
+        _statsMenu.SetActive(!_statsMenu.activeSelf);
     }
 }
