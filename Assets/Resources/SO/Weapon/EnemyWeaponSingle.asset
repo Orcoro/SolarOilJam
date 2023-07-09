@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e661c348ebc6be4396844814d34cc93, type: 3}
-  m_Name: Pistol
+  m_Name: EnemyWeaponSingle
   m_EditorClassIdentifier: 
-  _weaponName: Pistol
+  _weaponName: EnemyWeaponSingle
   _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
   _damage: 1
   _magazineSize: 10
@@ -21,5 +21,5 @@ MonoBehaviour:
   _projectileCount: 1
   _rafaleDelay: 0
   _rafaleCount: 0
-  _reloadTime: 1
+  _reloadTime: 0.25
   _cadence: 0

@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour
     private Movement _targetMovement;
     private Vector3 _velocity = Vector3.zero;
     private CameraManager _instance;
+    private Camera _camera;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class CameraManager : MonoBehaviour
             Destroy(this.gameObject);
         else
             _instance = this;
+        _camera = GetComponent<Camera>();
     }
 
     private void Start()

@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class Entities : MonoBehaviour, IKillable 
 {
+    [SerializeField] private SOEntities _entity;
     private Statistic _statistic = new Statistic();
     private IMoveable _movement;
     private Health _health;
-    private SOEntities _entities;
-    private AttackStyle _tmpattackStyle = AttackStyle.Range;
     private IAttackable _attackable;
+    private float _range;
 
     public Statistic Statistic {
         get { return _statistic; }
     }
 
+    public float Range {
+        get { return _range * (1 + _statistic.EntitiesStatistic.Range); }
+    }
+
     private void Awake()
     {
-        _movement = GetComponent<IMoveable>();
-        _health = GetComponent<Health>();
-        Init(_statistic);
+        _range = 5f;
+        if (_entity == null)
+            throw new System.Exception("SOEntities is NULL");
+        else 
+            Init(_entity);
     }
 
     private void Start()
@@ -27,8 +33,10 @@ public class Entities : MonoBehaviour, IKillable
         
     }
 
-    public void Init(Statistic statistic)
+    public void Init()
     {
+        _movement = GetComponent<IMoveable>();
+        _health = GetComponent<Health>();
         if (_movement == null)
             throw new System.Exception("Movement is NULL");
         else
@@ -37,16 +45,35 @@ public class Entities : MonoBehaviour, IKillable
             throw new System.Exception("Health is NULL");
         else
             _health.Init(true);
-        if (_tmpattackStyle == AttackStyle.Range)
+    }
+
+    public void Init(SOEntities entity)
+    {
+        _entity = entity;
+        _statistic = _entity.EntityStatistic;
+        if (_entity.AttackStyle == AttackStyle.Range)
             _attackable = gameObject.AddComponent<Shoot>();
+        _attackable.Init(transform, _entity.EntityWeapon);
+        Init();
     }
 
     private void Update()
     {
-        // if (_attackable is IMelee)
-        //     ((IMelee)_attackable).Attack(((IMelee)_attackable).CanAttack(), false, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if (_attackable is IRange)
-            ((IRange)_attackable).Attack(((IRange)_attackable).CanAttack(), ((IRange)_attackable).CanReload(), Player.Instance.transform.position);
+        if (_movement != null && CanMove())
+            _movement.Move(Player.Instance.transform.position - transform.position);
+        // if (_attackable is IMelee attackable)
+        //     attackable.Attack(attackable.CanAttack(), false, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (_attackable is IRange attackable)
+            attackable.Attack(attackable.CanAttack(), attackable.CanReload(), Player.Instance.transform.position);
+    }
+
+    private bool CanMove()
+    {
+        if (_attackable is IRange && Vector3.Distance(transform.position, Player.Instance.transform.position) < Range)
+            return false;
+        if (_attackable is IMelee)
+            Debug.Log("CanMove as melee");
+        return true;
     }
 
     public void Die()

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IAttackable
 {
+    void Init(Transform attackPoint, SOWeapon weapon);
     bool CanAttack();
 }

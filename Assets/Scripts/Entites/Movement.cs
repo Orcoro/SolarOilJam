@@ -43,6 +43,8 @@ public class Movement : MonoBehaviour, IMoveable
     public void Move(Vector3 direction)
     {
         _direction = direction;
+        _direction.z = 0;
+        _direction = _direction.normalized;
         _rigidbody2D.MovePosition(transform.position + (_direction * Speed * Time.deltaTime));
         //transform.Translate(_direction * _speed * Time.deltaTime);
     }

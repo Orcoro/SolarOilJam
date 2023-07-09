@@ -8,16 +8,16 @@ public class Shoot : MonoBehaviour, IRange
     private SOWeapon _weapon;
     private Transform _shootPoint;
     private GameObject _bulletPrefab;
-    private int _magazineSize = 10;
-    private float _bulletSpeed = 5f;
-    private float _shootDelay = 0.5f;
-    private int _projectileCount = 1;
-    private float _rafaleDelay = 0.5f;
-    private int _rafaleCount = 3;
-    private float _angle = 20f;
+    private int _magazineSize;
+    private float _bulletSpeed;
+    private float _shootDelay;
+    private int _projectileCount;
+    private float _rafaleDelay;
+    private int _rafaleCount;
+    private float _angle;
     private WeaponCadence _cadence = WeaponCadence.Single;
-    private float _bulletLifeTime = 15f;
-    private float _lastShootTime = 0f;
+    private float _bulletLifeTime;
+    private float _lastShootTime;
     private bool _hold = false;
     private FlagCoroutine _shootCoroutine;
     private FlagCoroutine _reloadCoroutine;
@@ -37,7 +37,8 @@ public class Shoot : MonoBehaviour, IRange
     }
 
     public float ShootDelay {
-        get { return _shootDelay * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.ShootDelayMultiplier)); }
+        get { Debug.Log($"_defaulShootDelay {_shootDelay}"); 
+            return _shootDelay * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.ShootDelayMultiplier)); }
     }
 
     public int ProjectileCount {
@@ -71,6 +72,7 @@ public class Shoot : MonoBehaviour, IRange
         _rafaleDelay = 0f;
         _rafaleCount = 0;
         _angle = 135f;
+        _bulletLifeTime = 15f;
         _cadence = WeaponCadence.None;
         _shootCoroutine = new FlagCoroutine(true);
         _reloadCoroutine = new FlagCoroutine(true);
@@ -138,6 +140,7 @@ public class Shoot : MonoBehaviour, IRange
 
     public void Attack(bool fire, bool reload, Vector3 direction)
     {
+        Debug.Log($"Attack {fire} hold {_hold}");
         if (reload)
             Reload();
         if (fire) {
@@ -163,12 +166,14 @@ public class Shoot : MonoBehaviour, IRange
 
     public bool CanReload()
     {
+        //Debug.Log($"CanReload {_shootCoroutine.Flag} {_reloadCoroutine.Flag} {_magazineSize < MaxMagazineSize}");
         return _shootCoroutine.Flag == true && _reloadCoroutine.Flag == true && _magazineSize < MaxMagazineSize;
     }
 
     public bool CanAttack()
     {
-        return _shootCoroutine.Flag == true && _reloadCoroutine.Flag == true && _magazineSize > 0;
+        //Debug.Log($"CanAttack {(_cadence == WeaponCadence.Single && _hold == true ? false : true)} {_shootCoroutine.Flag} {_reloadCoroutine.Flag} {_magazineSize > 0}");
+        return (_cadence == WeaponCadence.Single && _hold == true ? false : true) && _shootCoroutine.Flag == true && _reloadCoroutine.Flag == true && _magazineSize > 0;
     }
 
     public void Aim(Vector3 direction)
@@ -176,12 +181,14 @@ public class Shoot : MonoBehaviour, IRange
         if (_magazineSize <= 0 || _reloadCoroutine.Flag == false)
             return;
         direction.z = 0f;
+        Debug.Log($"direction {direction} transform.position {transform.position} direction - transform.position {direction - transform.position}");
         direction = direction - transform.position;
         direction.Normalize();
         switch (_cadence)
         {
             case WeaponCadence.Single:
                 if (Time.time > _lastShootTime + ShootDelay && _hold == false) {
+                    //Debug.Log($"{Time.time} > {_lastShootTime} + {ShootDelay} = {Time.time > _lastShootTime + ShootDelay} && {_hold} == false");
                     _shootCoroutine.Coroutine = StartCoroutine(SingleShot(direction, 0f));
                     _lastShootTime = Time.time;
                 }

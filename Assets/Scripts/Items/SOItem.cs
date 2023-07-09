@@ -93,6 +93,10 @@ public class WeaponStatistic
         set { _damageMultiplier = value; }
     }
 
+    public float DamagePercent {
+        get { return (1f + _damageMultiplier) * 100f;}
+    }
+
     public int AdditionnalMunition {
         get { return _additionnalMunition; }
         set { _additionnalMunition = value; }
@@ -103,9 +107,17 @@ public class WeaponStatistic
         set { _bulletVelocity = value; }
     }
 
+    public float BulletVelocityPercent {
+        get { return (1f + _bulletVelocity) * 100f;}
+    }
+
     public float ShootDelayMultiplier {
         get { return _shootDelayMultiplier; }
         set { _shootDelayMultiplier = value; }
+    }
+
+    public float ShootDelayPercent {
+        get { return (1f + _shootDelayMultiplier) * 100f;}
     }
 
     public int ProjectileBonus {
@@ -118,6 +130,10 @@ public class WeaponStatistic
         set { _rafaleDelay = value; }
     }
 
+    public float RafaleDelayPercent {
+        get { return (1f + _rafaleDelay) * 100f;}
+    }
+
     public int RafaleProjectileBonus {
         get { return _rafaleProjectileBonus; }
         set { _rafaleProjectileBonus = value; }
@@ -128,9 +144,17 @@ public class WeaponStatistic
         set { _spreadAngle = value; }
     }
 
+    public float SpreadAnglePercent {
+        get { return (1f + _spreadAngle) * 100f;}
+    }
+
     public float ReloadTime {
         get { return _reloadTime; }
         set { _reloadTime = value; }
+    }
+
+    public float ReloadTimePercent {
+        get { return (1f + _reloadTime) * 100f;}
     }
 
     public WeaponStatistic()
@@ -250,9 +274,9 @@ public class EntitiesStatistic
     [SerializeField] private int _health;
     [Tooltip ("This variable increase the player Armor and reduce Damage.")]
     [SerializeField] private int _armor;
-    [Tooltip ("This variable increase the Range of the player.")]
+    [Tooltip ("This variable increase the Range of the player. (must be write between 0 and 1)")]
     [SerializeField] private float _range;
-    [Tooltip ("This variable increase PickUp Range.")]
+    [Tooltip ("This variable increase PickUp Range. (must be write between 0 and 1)")]
     [SerializeField] private float _pickUpRange;
 
     public float Speed {
@@ -270,9 +294,17 @@ public class EntitiesStatistic
     public float Range {
         get { return _range; }
     }
+    
+    public float RangePercent {
+        get { return (1f + _range) * 100f;}
+    }
 
     public float PickUpRange {
         get { return _pickUpRange; }
+    }
+
+    public float PickUpRangePercent {
+        get { return (1f + _pickUpRange) * 100f;}
     }
 
     public EntitiesStatistic()

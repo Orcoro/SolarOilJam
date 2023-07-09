@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityName: Crab
   _entitySprite: {fileID: 0}
+  _entityWeapon: {fileID: 11400000, guid: d6549ebbc4a9e374683c0f86f80928d4, type: 2}
   _entityStatistic:
     _weaponStatistic:
       _damageMultiplier: 0
@@ -32,6 +33,6 @@ MonoBehaviour:
       _speed: -0.1
       _health: 10
       _armor: 0
-      _range: 0
+      _range: 2
       _pickUpRange: 0
   _attackStyle: 1
