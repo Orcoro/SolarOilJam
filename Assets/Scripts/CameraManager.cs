@@ -9,8 +9,16 @@ public class CameraManager : MonoBehaviour
     private Vector3 _offset;
     private Movement _targetMovement;
     private Vector3 _velocity = Vector3.zero;
-    private CameraManager _instance;
     private Camera _camera;
+    private static CameraManager _instance;
+
+    public Camera Camera {
+        get { return _camera; }
+    }
+
+    public static CameraManager Instance {
+        get { return _instance; }
+    }
 
     private void Awake()
     {

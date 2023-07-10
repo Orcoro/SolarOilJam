@@ -37,8 +37,7 @@ public class Shoot : MonoBehaviour, IRange
     }
 
     public float ShootDelay {
-        get { Debug.Log($"_defaulShootDelay {_shootDelay}"); 
-            return _shootDelay * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.ShootDelayMultiplier)); }
+        get { return _shootDelay * (_owner == null ? 1f : (1f + _owner.Statistic.WeaponStatistic.ShootDelayMultiplier)); }
     }
 
     public int ProjectileCount {
@@ -140,7 +139,7 @@ public class Shoot : MonoBehaviour, IRange
 
     public void Attack(bool fire, bool reload, Vector3 direction)
     {
-        Debug.Log($"Attack {fire} hold {_hold}");
+        //Debug.Log($"Attack {fire} hold {_hold}");
         if (reload)
             Reload();
         if (fire) {
@@ -181,7 +180,6 @@ public class Shoot : MonoBehaviour, IRange
         if (_magazineSize <= 0 || _reloadCoroutine.Flag == false)
             return;
         direction.z = 0f;
-        Debug.Log($"direction {direction} transform.position {transform.position} direction - transform.position {direction - transform.position}");
         direction = direction - transform.position;
         direction.Normalize();
         switch (_cadence)

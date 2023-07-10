@@ -22,10 +22,6 @@ public class Entities : MonoBehaviour, IKillable
     private void Awake()
     {
         _range = 5f;
-        if (_entity == null)
-            throw new System.Exception("SOEntities is NULL");
-        else 
-            Init(_entity);
     }
 
     private void Start()
@@ -64,7 +60,12 @@ public class Entities : MonoBehaviour, IKillable
         // if (_attackable is IMelee attackable)
         //     attackable.Attack(attackable.CanAttack(), false, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (_attackable is IRange attackable)
-            attackable.Attack(attackable.CanAttack(), attackable.CanReload(), Player.Instance.transform.position);
+            attackable.Attack(attackable.CanAttack() && PlayerIsInRange(), attackable.CanReload(), Player.Instance.transform.position);
+    }
+
+    private bool PlayerIsInRange()
+    {
+        return Vector3.Distance(transform.position, Player.Instance.transform.position) < (_entity.AttackStyle == AttackStyle.Melee ? Range : Range * 2);
     }
 
     private bool CanMove()
