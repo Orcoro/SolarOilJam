@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99778b72f8901fd439645b8c77868c58, type: 3}
-  m_Name: Crab
+  m_Name: Boss
   m_EditorClassIdentifier: 
   _entityName: Crab
-  _entitySprite: {fileID: 21300000, guid: 68c56eb23b84e71428be874e9d3cd631, type: 3}
-  _entityAnimator: {fileID: 7400000, guid: 285dea8a3027ca948ac63e08373647c0, type: 2}
+  _entitySprite: {fileID: 21300000, guid: 29ed94556c80db54c945bd03ae0a9432, type: 3}
+  _entityAnimator: {fileID: 7400000, guid: 8b925356842d91844a9da128d2740110, type: 2}
   _entityWeapon: {fileID: 11400000, guid: d6549ebbc4a9e374683c0f86f80928d4, type: 2}
   _entityStatistic:
     _weaponStatistic:
@@ -32,8 +32,8 @@ MonoBehaviour:
       _piercing: 0
     _entitiesStatistic:
       _speed: -0.1
-      _health: 10
+      _health: 5000
       _armor: 0
-      _range: 2
+      _range: 3
       _pickUpRange: 0
-  _attackStyle: 1
+  _attackStyle: 0

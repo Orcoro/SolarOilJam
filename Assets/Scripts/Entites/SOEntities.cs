@@ -8,6 +8,7 @@ public class SOEntities : ScriptableObject
 {
     [SerializeField] private string _entityName;
     [SerializeField] private Sprite _entitySprite;
+    [SerializeField] private AnimationClip _entityAnimator;
     [SerializeField] private SOWeapon _entityWeapon;
     [SerializeField] private Statistic _entityStatistic;
     [SerializeField] private AttackStyle _attackStyle;

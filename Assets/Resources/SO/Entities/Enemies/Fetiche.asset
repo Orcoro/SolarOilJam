@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99778b72f8901fd439645b8c77868c58, type: 3}
-  m_Name: Crab
+  m_Name: Fetiche
   m_EditorClassIdentifier: 
   _entityName: Crab
-  _entitySprite: {fileID: 21300000, guid: 68c56eb23b84e71428be874e9d3cd631, type: 3}
-  _entityAnimator: {fileID: 7400000, guid: 285dea8a3027ca948ac63e08373647c0, type: 2}
+  _entitySprite: {fileID: 21300000, guid: ac69db291e80b59489632b8176e91de0, type: 3}
+  _entityAnimator: {fileID: 7400000, guid: 50cc7e32648ac9e45a648b574552ece3, type: 2}
   _entityWeapon: {fileID: 11400000, guid: d6549ebbc4a9e374683c0f86f80928d4, type: 2}
   _entityStatistic:
     _weaponStatistic:
@@ -36,4 +36,4 @@ MonoBehaviour:
       _armor: 0
       _range: 2
       _pickUpRange: 0
-  _attackStyle: 1
+  _attackStyle: 0
