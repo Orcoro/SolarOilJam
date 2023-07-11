@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: TacticalStock
   _itemDescription: Decrease Spread Angle by 15%.
-  _itemSprite: {fileID: 21300000, guid: 00dc1296575f72442912006b916fb6e1, type: 3}
+  _itemSprite: {fileID: 21300000, guid: b563fb1fc70644745afd09afe3c7eb8d, type: 3}
   _itemQuality: 0
   _weaponStatistic:
     _damageMultiplier: 0

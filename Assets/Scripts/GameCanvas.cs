@@ -42,10 +42,4 @@ public class GameCanvas : MonoBehaviour
     {
         _healthText.value -= damage;
     }
-
-    public int CurrentHealth()
-    {
-        return (int)_healthText.value;
-    }
-
 }
