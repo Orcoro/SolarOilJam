@@ -5564,7 +5564,23 @@ MonoBehaviour:
   - {fileID: 4518033845912339482}
   - {fileID: 5488850205997532622}
   - {fileID: 4640126055663573217}
-  _statsInt: 1a000000010000000c000000f3fffffffcffffff0e000000fffffffff4fffffff8ffffffeafffffff5fffffff6ffffff0000000006000000020000000f000000
+  _statsInt:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &6114315099463040558
 GameObject:
   m_ObjectHideFlags: 0
