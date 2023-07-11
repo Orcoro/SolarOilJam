@@ -49,7 +49,7 @@ public class Health : MonoBehaviour, IDamageable
             gameCanvas.UpdateScore(damage);
             if (gameObject.tag == "Player")
             {
-                gameCanvas.UpdateHealth(damage*10);
+                gameCanvas.UpdateHealth(damage * 10);
                 gameCanvas.UpdateScore(-damage);
             }
         _currentHealth = _currentHealth - damage < 0 ? 0 : _currentHealth - damage;
