@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponName: Pistol
   _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
-  _damage: 2
-  _magazineSize: 10
+  _damage: 1
+  _magazineSize: 20
   _bulletSpeed: 25
   _shootDelay: 0.25
   _projectileCount: 1

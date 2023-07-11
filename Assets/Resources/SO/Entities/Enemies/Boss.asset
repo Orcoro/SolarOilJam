@@ -49,7 +49,7 @@ MonoBehaviour:
       _piercing: 0
     _entitiesStatistic:
       _speed: -0.1
-      _health: 5000
+      _health: 1000
       _armor: 0
       _range: 3
       _pickUpRange: 0

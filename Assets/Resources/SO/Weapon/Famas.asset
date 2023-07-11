@@ -15,12 +15,11 @@ MonoBehaviour:
   _weaponName: Famas
   _bulletPrefab: {fileID: 8327793300260502387, guid: afdbba58e2b5d7c44ae926665c6e3969, type: 3}
   _damage: 3
-  _magazineSize: 30
+  _magazineSize: 60
   _bulletSpeed: 25
   _shootDelay: 1
   _projectileCount: 1
   _rafaleDelay: 0
   _rafaleCount: 3
-  _angle: 0
   _reloadTime: 2
   _cadence: 1
