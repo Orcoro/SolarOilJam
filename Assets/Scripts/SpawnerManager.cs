@@ -34,7 +34,7 @@ public class SpawnerManager : MonoBehaviour
                 enemy.transform.position = GetRandomPositionInCircle();
                 enemy.GetComponent<Entities>()?.Init(elementsToSpawn[entity].Entity);
                 _spawnedObjects.Add(enemy);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }

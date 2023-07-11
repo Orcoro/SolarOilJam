@@ -9,6 +9,8 @@ public class Entities : MonoBehaviour, IKillable
     private IMoveable _movement;
     private Health _health;
     private IAttackable _attackable;
+    private BoxCollider2D _collider;
+    private CharacterAnimator _animation;
     private float _range;
 
     public Statistic Statistic {
@@ -33,6 +35,8 @@ public class Entities : MonoBehaviour, IKillable
     {
         _movement = GetComponent<IMoveable>();
         _health = GetComponent<Health>();
+        _animation = GetComponent<CharacterAnimator>();
+        _collider = GetComponent<BoxCollider2D>();
         if (_movement == null)
             throw new System.Exception("Movement is NULL");
         else
@@ -41,6 +45,9 @@ public class Entities : MonoBehaviour, IKillable
             throw new System.Exception("Health is NULL");
         else
             _health.Init(true);
+        _animation.Init(_entity.EntityAnimation);
+        _collider.size = _entity.HitBoxSize;
+        _collider.offset = _entity.HitBoxOffset;
     }
 
     public void Init(SOEntities entity)

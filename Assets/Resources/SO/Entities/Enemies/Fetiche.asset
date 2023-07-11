@@ -12,9 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99778b72f8901fd439645b8c77868c58, type: 3}
   m_Name: Fetiche
   m_EditorClassIdentifier: 
-  _entityName: Crab
+  _entityName: Fetichiste
+  _entityPrefab: {fileID: 0}
   _entitySprite: {fileID: 21300000, guid: ac69db291e80b59489632b8176e91de0, type: 3}
-  _entityAnimator: {fileID: 7400000, guid: 50cc7e32648ac9e45a648b574552ece3, type: 2}
+  _entityAnimation:
+    _name: Fetichiste Movement
+    _frameRate: 0.2
+    _defaultSprite: {fileID: 21300000, guid: ac69db291e80b59489632b8176e91de0, type: 3}
+    _sprites:
+    - {fileID: 21300000, guid: ac69db291e80b59489632b8176e91de0, type: 3}
+    - {fileID: 21300000, guid: 04d87dfe84018a04d95a91e243156773, type: 3}
+    - {fileID: 21300000, guid: 5b47a6bab2d07194d89a6f04a1fb5700, type: 3}
+    - {fileID: 21300000, guid: ac69db291e80b59489632b8176e91de0, type: 3}
+  _hitBoxSize: {x: 2, y: 2.5}
+  _hitBoxOffset: {x: -0.26, y: 0.33}
   _entityWeapon: {fileID: 11400000, guid: d6549ebbc4a9e374683c0f86f80928d4, type: 2}
   _entityStatistic:
     _weaponStatistic:
@@ -36,4 +47,4 @@ MonoBehaviour:
       _armor: 0
       _range: 2
       _pickUpRange: 0
-  _attackStyle: 0
+  _attackStyle: 1

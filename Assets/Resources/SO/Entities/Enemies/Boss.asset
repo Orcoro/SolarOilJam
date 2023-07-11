@@ -12,9 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99778b72f8901fd439645b8c77868c58, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  _entityName: Crab
+  _entityName: Sun Avatar
+  _entityPrefab: {fileID: 0}
   _entitySprite: {fileID: 21300000, guid: 29ed94556c80db54c945bd03ae0a9432, type: 3}
-  _entityAnimator: {fileID: 7400000, guid: 8b925356842d91844a9da128d2740110, type: 2}
+  _entityAnimation:
+    _name: BossMovement
+    _frameRate: 0.1
+    _defaultSprite: {fileID: 21300000, guid: 29ed94556c80db54c945bd03ae0a9432, type: 3}
+    _sprites:
+    - {fileID: 21300000, guid: 29ed94556c80db54c945bd03ae0a9432, type: 3}
+    - {fileID: 21300000, guid: a801bacc2a47e81409eebea5e987bac3, type: 3}
+    - {fileID: 21300000, guid: e92afa714a83e784ca24ad4acd12da33, type: 3}
+    - {fileID: 21300000, guid: 6513b0825814d3a46b5b35cf052acba8, type: 3}
+    - {fileID: 21300000, guid: 932f789dbe3fecb48b6b21265e3ad538, type: 3}
+    - {fileID: 21300000, guid: 6a0a2f50e54951b47a61382b13e2a852, type: 3}
+    - {fileID: 21300000, guid: 7e90a462924737644894a338b777ebc4, type: 3}
+    - {fileID: 21300000, guid: bb65ffa1c63f1d54698fb674c1e1645e, type: 3}
+    - {fileID: 21300000, guid: dd017ec7cfe4e7441be72855c2f2807e, type: 3}
+    - {fileID: 21300000, guid: 29ed94556c80db54c945bd03ae0a9432, type: 3}
+  _hitBoxSize: {x: 2.4, y: 2.3}
+  _hitBoxOffset: {x: 0, y: 1}
   _entityWeapon: {fileID: 11400000, guid: d6549ebbc4a9e374683c0f86f80928d4, type: 2}
   _entityStatistic:
     _weaponStatistic:
@@ -36,4 +53,4 @@ MonoBehaviour:
       _armor: 0
       _range: 3
       _pickUpRange: 0
-  _attackStyle: 0
+  _attackStyle: 1

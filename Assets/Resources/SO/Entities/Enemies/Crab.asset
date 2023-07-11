@@ -13,20 +13,30 @@ MonoBehaviour:
   m_Name: Crab
   m_EditorClassIdentifier: 
   _entityName: Crab
+  _entityPrefab: {fileID: 8637274885270304802, guid: 69386914aafb752418e03493fef2fcb3, type: 3}
   _entitySprite: {fileID: 21300000, guid: 68c56eb23b84e71428be874e9d3cd631, type: 3}
-  _entityAnimator: {fileID: 7400000, guid: 285dea8a3027ca948ac63e08373647c0, type: 2}
+  _entityAnimation:
+    _name: CrabMovement
+    _frameRate: 0.2
+    _defaultSprite: {fileID: 21300000, guid: 68c56eb23b84e71428be874e9d3cd631, type: 3}
+    _sprites:
+    - {fileID: 21300000, guid: 68c56eb23b84e71428be874e9d3cd631, type: 3}
+    - {fileID: 21300000, guid: a63d7dd06a5f8d34f94af40ee6af28d5, type: 3}
+    - {fileID: 21300000, guid: 68c56eb23b84e71428be874e9d3cd631, type: 3}
+  _hitBoxSize: {x: 1.2, y: 0.7}
+  _hitBoxOffset: {x: 0, y: 0.1}
   _entityWeapon: {fileID: 11400000, guid: d6549ebbc4a9e374683c0f86f80928d4, type: 2}
   _entityStatistic:
     _weaponStatistic:
       _damageMultiplier: 0
       _additionnalMunition: 0
       _bulletVelocity: 0
-      _shootDelayMultiplier: 0
+      _shootDelayMultiplier: 3
       _projectileBonus: 0
       _rafaleDelay: 0
       _rafaleProjectileBonus: 0
       _spreadAngle: 0
-      _reloadTime: 0
+      _reloadTime: 5
     _bulletStatistic:
       _damage: 0
       _piercing: 0
