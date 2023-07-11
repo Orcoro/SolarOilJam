@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemName: Extended QuickDraw Magazine
   _itemDescription: Increase Magazine Capacity by 10 Ammo and Decrease Reload Time
     by 10%.
-  _itemSprite: {fileID: 21300000, guid: 91f18a6d4abf80a4b8e3b1118d1628a3, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 1c723953be2199c499eb7b91f8913415, type: 3}
   _itemQuality: 2
   _weaponStatistic:
     _damageMultiplier: 0

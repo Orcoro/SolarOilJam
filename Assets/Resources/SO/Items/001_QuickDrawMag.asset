@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: QuickDraw Magazine
   _itemDescription: Decrease Reload Time by 10%.
-  _itemSprite: {fileID: 21300000, guid: 7d4af11f9da963440a8f239ac85792ee, type: 3}
+  _itemSprite: {fileID: 21300000, guid: d7affd24757cdbf42bfc2f34847a13bc, type: 3}
   _itemQuality: 0
   _weaponStatistic:
     _damageMultiplier: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: ExtentedMagazine
   _itemDescription: Increase Magazine Capacity by 10 Ammo.
-  _itemSprite: {fileID: 21300000, guid: d50648df12ddc53428d0bed64ed242f5, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 2990edcc9083d84449b8cf50328ca9d0, type: 3}
   _itemQuality: 0
   _weaponStatistic:
     _damageMultiplier: 0
