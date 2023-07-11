@@ -72,17 +72,12 @@ public class Player : MonoBehaviour, IKillable
         _movement.Move(new Vector3(horizontalInput, verticalInput, 0));
     }
 
-    public void TakeDamage(int damage)
-    {
-        GameCanvas _gameCanvas = FindObjectOfType<GameCanvas>();
-        _gameCanvas.UpdateHealth(damage);
-        if (_gameCanvas.CurrentHealth() <= 0)
-            Die();
-    }
-
     public void Die()
     {
-        Debug.Log("Player is dead");
+        GameCanvas _gameCanvas = FindObjectOfType<GameCanvas>();
+        _gameCanvas.UpdateHealth(0);
+        SceneManager _sceneManager = FindObjectOfType<SceneManager>();
+        _sceneManager.GameOver();
     }
 
     public void PickUpItem(SOItem item)
