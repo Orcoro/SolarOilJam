@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: UnderBarrel Shotgun
   _itemDescription: Increase Projectile by 2 and Spread Angle 10%
-  _itemSprite: {fileID: 21300000, guid: 6bf436f3f246b454da75b823a2e6d079, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 4e3f91adddf30d945a9659f0bd35e028, type: 3}
   _itemQuality: 3
   _weaponStatistic:
     _damageMultiplier: 0

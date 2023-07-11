@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemName: 12 Gauge Ammo
   _itemDescription: Increase Damage by 50 and Damage Multiplier by 20% but Increase
     Spread Angle by 80% and Relaod Time by 50%
-  _itemSprite: {fileID: 21300000, guid: 17b69705f04293d4baaad8a6e3fbddf0, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 11a18721bba496d42b61bd8c942d9174, type: 3}
   _itemQuality: 4
   _weaponStatistic:
     _damageMultiplier: 0.2

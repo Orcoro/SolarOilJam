@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: 60 Magazine
   _itemDescription: Increase Magazine Capacity by 60 Ammo.
-  _itemSprite: {fileID: 21300000, guid: 48c6ec529a0df9747ad5b21ffd9768e2, type: 3}
+  _itemSprite: {fileID: 21300000, guid: e8748b5452f4c2043957377417fcc04a, type: 3}
   _itemQuality: 3
   _weaponStatistic:
     _damageMultiplier: 0

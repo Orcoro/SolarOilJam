@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: 30 Round Magazine
   _itemDescription: Increase Magazine Capacity by 30 Ammo.
-  _itemSprite: {fileID: 21300000, guid: 977a9590dda1a9647bdd712e0a80b164, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 3de6c17a9371ce140b1e98e5c3010df0, type: 3}
   _itemQuality: 1
   _weaponStatistic:
     _damageMultiplier: 0

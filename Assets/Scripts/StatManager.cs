@@ -9,20 +9,14 @@ public class StatManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI[] _statsNames;
     [SerializeField] private TextMeshProUGUI[] _statsNumbers;
-    [SerializeField] private int[] _statsInt;
-
-    [Button("UpdateStats")]
-    public void UpdateStatsButton()
+    [SerializeField] private float[] _statsInt;
+    
+    private void Start()
     {
-        int[] stats = new int[16];
-        for (int i = 0; i < stats.Length; i++)
-        {
-            stats[i] = Random.Range(-10, 10);
-        }
-        UpdateStats(stats);
+        UpdateStats(_statsInt);
     }
 
-    public void UpdateStats(int[] stats)
+    public void UpdateStats(float[] stats)
     {
         for (int i = 0; i < stats.Length; i++)
         {
@@ -32,7 +26,7 @@ public class StatManager : MonoBehaviour
         UpdateColorStats(_statsInt);
     }
 
-    public void UpdateColorStats(int[] stats)
+    public void UpdateColorStats(float[] stats)
     {
         for (int i = 0; i < _statsNumbers.Length; i++)
         {

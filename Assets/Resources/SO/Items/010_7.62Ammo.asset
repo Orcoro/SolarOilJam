@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: 7.62 ammunition
   _itemDescription: Increase Damage by 15 but Increase Shoot Delay by 15%
-  _itemSprite: {fileID: 21300000, guid: 9739d9019a60c47469675423519ee26a, type: 3}
+  _itemSprite: {fileID: 21300000, guid: af1d5db9181d13b4994355725c83487e, type: 3}
   _itemQuality: 3
   _weaponStatistic:
     _damageMultiplier: 0

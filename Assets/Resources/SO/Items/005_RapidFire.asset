@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: Rapid Fire
   _itemDescription: Decrease Shoot Delay by 15%
-  _itemSprite: {fileID: 21300000, guid: c41dbe76cffc1ba438549c98fc4b04d6, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 8fc833eba2f159b4a814bc245d40a193, type: 3}
   _itemQuality: 1
   _weaponStatistic:
     _damageMultiplier: 0
