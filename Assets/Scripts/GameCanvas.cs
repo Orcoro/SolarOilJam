@@ -11,6 +11,7 @@ public class GameCanvas : MonoBehaviour
     [SerializeField] private Slider _healthText;
     [SerializeField] private TextMeshProUGUI _scoreText;
     private int totalScore = 0;
+    private int currentMaxMagazineSize = 10;
 
     void Start()
     {
@@ -20,13 +21,20 @@ public class GameCanvas : MonoBehaviour
 
     public void Update()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        int magazineSize = player.GetComponent<Shoot>().UpdateMagazineSize();
+        int maxMagazineSize = player.GetComponent<Shoot>().MaxMagazineSize;
+        if (maxMagazineSize > currentMaxMagazineSize)
+            currentMaxMagazineSize = maxMagazineSize;
         Shoot shoot = FindObjectOfType<Shoot>();
-        _ammoText.text = shoot.UpdateMagazineSize() * 10 + "ml/" + shoot.MaxMagazineSize * 10 + "ml";
+        _ammoText.text = magazineSize * 10 + "ml/" + currentMaxMagazineSize * 10 + "ml";
     }
 
     public void UpdateScore(int score)
     {
         totalScore += score;
+        if (totalScore < 0)
+            totalScore = 0;
         _scoreText.text = totalScore.ToString();
     }
 

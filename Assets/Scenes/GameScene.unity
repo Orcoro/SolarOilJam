@@ -51272,6 +51272,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 588444563604072296, guid: abfdade9240401b4eb9400049ab4633f, type: 3}
+      propertyPath: _objectsToSpawn.Array.data[0]._spawnElements.Array.data[0]._count
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 588444563604072297, guid: abfdade9240401b4eb9400049ab4633f, type: 3}
       propertyPath: m_Name
       value: SpawnerManager

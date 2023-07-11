@@ -46,7 +46,12 @@ public class Health : MonoBehaviour, IDamageable
         if (Armor > 0)
             damage -= Armor;
             GameCanvas gameCanvas = FindObjectOfType<GameCanvas>();
-            gameCanvas.UpdateHealth(damage*10);
+            gameCanvas.UpdateScore(damage);
+            if (gameObject.tag == "Player")
+            {
+                gameCanvas.UpdateHealth(damage*10);
+                gameCanvas.UpdateScore(-damage);
+            }
         _currentHealth = _currentHealth - damage < 0 ? 0 : _currentHealth - damage;
         if (_currentHealth == 0 && killable != null)
             killable.Die();
