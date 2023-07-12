@@ -108,6 +108,7 @@ public class Entities : MonoBehaviour, IKillable
     public void Die()
     {
         _status = Status.Dead;
+        _collider.enabled = false;
         PlayAudioClip(AudioType.Death);
         Debug.Log("Entity Die");
         Destroy(this.gameObject, 1f);
