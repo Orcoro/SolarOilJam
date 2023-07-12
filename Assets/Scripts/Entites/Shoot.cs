@@ -239,7 +239,7 @@ public class Shoot : MonoBehaviour, IRange
             Vector3 bulletDirection = rotationOffset * bulletRotation * direction;
             GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * BulletSpeed;
-            bullet.GetComponent<Bullet>().Init(_owner);
+            bullet.GetComponent<Bullet>().Init(_owner, _weapon);
             Destroy(bullet, _bulletLifeTime);
         }
         yield return null;

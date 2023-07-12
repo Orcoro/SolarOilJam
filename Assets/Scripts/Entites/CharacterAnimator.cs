@@ -24,7 +24,7 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (_animation == null)
             return;
-        Debug.Log($"Current frame: {_currentFrame} Timer: {_timer} FrameRate: {_animation.FrameRate} Sprites count: {_animation.Sprites.Count} Sprite: {_spriteRenderer.sprite.name}");
+        //Debug.Log($"Current frame: {_currentFrame} Timer: {_timer} FrameRate: {_animation.FrameRate} Sprites count: {_animation.Sprites.Count} Sprite: {_spriteRenderer.sprite.name}");
         _timer += Time.deltaTime;
         if (_timer > _animation.FrameRate) {
             _currentFrame = (_currentFrame + 1) % _animation.Sprites.Count == 0 ? 1 : (_currentFrame + 1) % _animation.Sprites.Count;

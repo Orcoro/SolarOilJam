@@ -47,8 +47,7 @@ public class Health : MonoBehaviour, IDamageable
             damage -= Armor;
             GameCanvas gameCanvas = FindObjectOfType<GameCanvas>();
             gameCanvas.UpdateScore(damage);
-            if (gameObject.tag == "Player")
-            {
+            if (gameObject.tag == "Player") {
                 gameCanvas.UpdateHealth(damage * 10);
                 gameCanvas.UpdateScore(-damage);
             }

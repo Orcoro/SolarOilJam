@@ -72,6 +72,11 @@ public class Player : MonoBehaviour, IKillable
         _movement.Move(new Vector3(horizontalInput, verticalInput, 0));
     }
 
+    public void PlayAudioClip(AudioType audioType)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Die()
     {
         GameCanvas _gameCanvas = FindObjectOfType<GameCanvas>();

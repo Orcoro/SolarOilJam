@@ -5,5 +5,7 @@ using UnityEngine;
 public interface IKillable
 {
     Statistic Statistic { get; }
+
+    void PlayAudioClip(AudioType audioType);
     void Die();
 }

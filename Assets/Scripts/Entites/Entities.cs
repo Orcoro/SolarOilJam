@@ -10,7 +10,9 @@ public class Entities : MonoBehaviour, IKillable
     private Health _health;
     private IAttackable _attackable;
     private BoxCollider2D _collider;
+    private AudioSource _audioSource;
     private CharacterAnimator _animation;
+    private Status _status = Status.Alive;
     private float _range;
 
     public Statistic Statistic {
@@ -24,6 +26,7 @@ public class Entities : MonoBehaviour, IKillable
     private void Awake()
     {
         _range = 5f;
+        _status = Status.Alive;
     }
 
     private void Start()
@@ -37,6 +40,7 @@ public class Entities : MonoBehaviour, IKillable
         _health = GetComponent<Health>();
         _animation = GetComponent<CharacterAnimator>();
         _collider = GetComponent<BoxCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
         if (_movement == null)
             throw new System.Exception("Movement is NULL");
         else
@@ -60,8 +64,25 @@ public class Entities : MonoBehaviour, IKillable
         Init();
     }
 
+    public void PlayAudioClip(AudioType audioType)
+    {
+        if (_audioSource == null)
+            throw new System.Exception("AudioSource is NULL");
+        else {
+            _audioSource.clip = _entity.GetAudioClip(audioType);
+            if (_audioSource.clip != null) {
+                _audioSource.loop = false;
+                _audioSource.volume = 0.5f;
+                _audioSource.Play();
+            }
+        }
+
+    }
+
     private void Update()
     {
+        if (_status == Status.Dead)
+            return;
         if (_movement != null && CanMove())
             _movement.Move(Player.Instance.transform.position - transform.position);
         // if (_attackable is IMelee attackable)
@@ -86,9 +107,22 @@ public class Entities : MonoBehaviour, IKillable
 
     public void Die()
     {
+        _status = Status.Dead;
+        PlayAudioClip(AudioType.Death);
         Debug.Log("Entity Die");
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 1f);
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.DropItem(new Vector3(transform.position.x, transform.position.y, -2f));
+    }
+}
+
+[System.Serializable]
+public enum Status {
+    Alive = 0,
+    Dead = 1
 }
 
 [System.Serializable]

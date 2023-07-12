@@ -12,6 +12,7 @@ public class SOEntities : ScriptableObject
     [SerializeField] private CharacterAnimation _entityAnimation;
     [SerializeField] private Vector2 _hitBoxSize;
     [SerializeField] private Vector2 _hitBoxOffset;
+    [SerializeField] private List<AudioElement> _entitySounds;
     [SerializeField] private SOWeapon _entityWeapon;
     [SerializeField] private Statistic _entityStatistic;
     [SerializeField] private AttackStyle _attackStyle;
@@ -40,6 +41,10 @@ public class SOEntities : ScriptableObject
         get { return _hitBoxOffset; }
     }
 
+    public List<AudioElement> EntitySounds {
+        get { return _entitySounds; }
+    }
+
     public SOWeapon EntityWeapon {
         get { return _entityWeapon; }
     }
@@ -51,4 +56,36 @@ public class SOEntities : ScriptableObject
     public AttackStyle AttackStyle {
         get { return _attackStyle; }
     }
+
+    public AudioClip GetAudioClip(AudioType audioType)
+    {
+        AudioElement audioElement = _entitySounds.Find(x => x.AudioType == audioType);
+
+        if (audioElement != null)
+            return audioElement.AudioClip;
+        return null;
+    }
+}
+
+[System.Serializable]
+public class AudioElement
+{
+    [SerializeField] private AudioType _audioType;
+    [SerializeField] private AudioClip _audioClip;
+
+    public AudioType AudioType {
+        get { return _audioType; }
+    }
+
+    public AudioClip AudioClip {
+        get { return _audioClip; }
+    }
+}
+
+public enum AudioType
+{
+    Attack,
+    Death,
+    Hurt,
+    Walk
 }

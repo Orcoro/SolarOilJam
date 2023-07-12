@@ -40,6 +40,6 @@ public class GameCanvas : MonoBehaviour
 
     public void UpdateHealth(int damage)
     {
-        _healthText.value -= damage;
+        //_healthText.value -= damage;
     }
 }

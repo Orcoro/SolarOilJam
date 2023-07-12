@@ -44,9 +44,9 @@ public class SOItem : ScriptableObject
                 case(Quality.Rare):
                     return Color.blue;
                 case(Quality.Epic):
-                    return Color.magenta;
+                    return new Color(0.6f, 0f, 0.9f);
                 case(Quality.Legendary):
-                    return new Color(1, 0.58f, 0);
+                    return new Color(1f, 0.58f, 0f);
                 default:
                     return Color.white;
             }
@@ -354,6 +354,7 @@ public class EntitiesStatistic
 
 public enum Quality
 {
+    None,
     Common,
     Uncommon,
     Rare,

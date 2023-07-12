@@ -17,12 +17,11 @@ public class Item : MonoBehaviour
     {
         _icon = GetComponent<SpriteRenderer>();
         _background = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        if (_item != null)
-            Init(_item);
     }
 
     public void Init(SOItem item)
     {
+        Debug.Log($"Item: {item.name}");
         _item = item;
         _background.color = item.ItemColor;
         _icon.sprite = item.ItemSprite;
