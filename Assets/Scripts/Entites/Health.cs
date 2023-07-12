@@ -5,8 +5,8 @@ using UnityEngine;
 public class Health : MonoBehaviour, IDamageable
 {
     private IKillable _owner;
-    private int _maxHealth = 10;
-    private int _currentHealth = 10;
+    private int _maxHealth = 0;
+    private int _currentHealth = 0;
 
     public int MaxHealth {
         get { return _maxHealth + _owner.Statistic.EntitiesStatistic.Health; }
@@ -18,6 +18,18 @@ public class Health : MonoBehaviour, IDamageable
 
     public int Armor {
         get { return _owner.Statistic.EntitiesStatistic.Armor; }
+    }
+
+    private void Awake()
+    {
+        _maxHealth = 0;
+        _currentHealth = 0;
+    }
+
+    public void Init(bool fullLife, int maxHealth)
+    {
+        _maxHealth = maxHealth;
+        Init(fullLife);
     }
 
     public void Init(bool fullLife)

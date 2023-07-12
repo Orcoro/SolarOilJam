@@ -53,7 +53,7 @@ public class Player : MonoBehaviour, IKillable
         if (_health == null)
             throw new System.Exception("Health is NULL");
         else
-            _health.Init(true);
+            _health.Init(true, 20);
     }
 
     private void LateUpdate()
